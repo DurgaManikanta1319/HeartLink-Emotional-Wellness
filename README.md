@@ -1,149 +1,129 @@
-# HeartLink-Emotional-Wellness
-AI-powered emotional wellness platform designed to help users track moods, journal thoughts, build healthy habits, and improve mental well-being through personalized support.
-# HeartLink - Emotional Wellness Platform
+# HeartLink - Emotional Wellness
 
-HeartLink is a modern AI-powered emotional wellness platform designed to help users understand their emotions, track their mood, build healthy habits, and improve mental well-being in a safe and supportive environment.
-
-## Live Demo
-
-🌐 https://frontend-topaz-nine-90.vercel.app/
-
----
-
-## Overview
-
-HeartLink provides a digital space where users can:
-
-* Track daily moods
-* Maintain personal journals
-* Monitor emotional growth
-* Build positive habits
-* Receive AI-powered emotional support
-* Improve overall mental wellness
-
-The platform combines modern UI/UX design with wellness-focused features to create a calming and engaging experience.
-
----
+HeartLink is a full-stack emotional wellness web app for mood tracking, private user accounts, dashboard history, and an optional AI coach powered by OpenRouter.
 
 ## Features
 
-### Mood Tracking
+- User registration and login with JWT authentication
+- Mood check-ins with emotion, intensity, and notes
+- Personal dashboard with mood history
+- Delete mood entries
+- AI wellness chat endpoint using OpenRouter
+- Responsive React interface with animations
+- Local MongoDB Community Server support
 
-* Daily mood check-ins
-* Mood history visualization
-* Emotional trend analysis
-
-### Personal Journaling
-
-* Secure digital journal
-* Reflection prompts
-* Emotional insights
-
-### Habit Building
-
-* Wellness goals
-* Daily streak tracking
-* Progress monitoring
-
-### AI-Powered Support
-
-* Personalized suggestions
-* Emotional wellness guidance
-* Smart recommendations
-
-### Modern User Experience
-
-* Responsive design
-* Smooth animations
-* Interactive interface
-* Mobile-friendly layout
-
----
-
-## Technologies Used
+## Tech Stack
 
 ### Frontend
 
-* Next.js
-* React.js
-* JavaScript
+- React 18
+- Vite
+- React Router
+- Axios
+- Framer Motion
+- Tailwind CSS
 
-### Styling
+### Backend
 
-* Tailwind CSS
-* CSS Modules
-
-### Deployment
-
-* Vercel
-
----
+- Node.js
+- Express
+- MongoDB Community Server or MongoDB Atlas
+- Mongoose
+- JWT authentication
+- OpenRouter API integration
 
 ## Project Structure
 
-```bash
-HeartLink-Emotional-Wellness/
-│
-├── app/
-├── components/
-├── public/
-├── styles/
-├── data/
-├── package.json
+```text
+heartlink/
+├── backend/
+│   ├── middleware/
+│   ├── models/
+│   ├── routes/
+│   ├── server.js
+│   ├── .env.example
+│   └── package.json
+├── frontend/
+│   ├── src/
+│   ├── index.html
+│   ├── .env.example
+│   └── package.json
 └── README.md
 ```
 
----
+## Prerequisites
 
-## Screenshots
+- Node.js 18 or newer
+- MongoDB Community Server running locally, or a MongoDB Atlas connection string
 
-### Landing Page
+## Environment Setup
 
-![Landing Page](screenshots/home.png)
+Create `backend/.env` from `backend/.env.example`:
 
-### Features Section
+```env
+PORT=5000
+MONGODB_URI=mongodb://127.0.0.1:27017/heartlink
+JWT_SECRET=replace_with_strong_secret
+FRONTEND_URL=http://localhost:5173
+OPENROUTER_API_KEY=your_openrouter_api_key
+OPENROUTER_MODEL=openrouter/free
+OPENROUTER_SITE_URL=http://localhost:5173
+OPENROUTER_APP_NAME=HeartLink
+```
 
-![Features](screenshots/features.png)
+Create `frontend/.env` from `frontend/.env.example` if needed:
 
-### Mood Tracking Dashboard
+```env
+VITE_API_URL=http://localhost:5000
+```
 
-![Dashboard](screenshots/dashboard.png)
+## Run Locally
 
-### AI Wellness Support
+Start MongoDB Community Server:
 
-![AI Support](screenshots/support.png)
+```powershell
+Start-Service MongoDB
+```
 
----
+Install and run the backend:
 
-## Future Enhancements
+```powershell
+cd backend
+npm install
+npm run dev
+```
 
-* User Authentication
-* AI Chat Assistant
-* Community Support Groups
-* Mood Analytics Dashboard
-* Therapist Booking System
-* Mobile Application
-* Wellness Challenges
+Install and run the frontend in another terminal:
 
----
+```powershell
+cd frontend
+npm install
+npm run dev
+```
 
-## Author
+Open the app:
 
-### K. Durga Manikanta
+```text
+http://localhost:5173
+```
 
-* Full Stack Developer
-* Graphic Designer
-* Content Creator
-* B.Tech CSE Student
+The backend API runs at:
 
-### Connect
+```text
+http://localhost:5000
+```
 
-GitHub:
-https://github.com/DurgaManikanta1319
+## API Routes
 
-LinkedIn:
-https://www.linkedin.com/in/kali-durga-manikanta-76a0293aa
+- `POST /api/auth/register` - create a user account
+- `POST /api/auth/login` - sign in and receive a JWT
+- `GET /api/mood` - get the logged-in user's mood entries
+- `POST /api/mood` - create a mood entry
+- `DELETE /api/mood/:id` - delete a mood entry
+- `POST /api/chat` - send chat messages to the AI coach
 
----
+## Notes
 
-⭐ If you found this project useful, consider giving it a star.
+- `backend/.env` is ignored by Git so secrets are not committed.
+- `node_modules`, build output, and Vercel metadata are ignored.
+- The AI chat feature requires `OPENROUTER_API_KEY`; the rest of the app can run without it.
